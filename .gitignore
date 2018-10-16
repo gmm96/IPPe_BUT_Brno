@@ -1,0 +1,4 @@
+*.zip
+*.odt
+*.html
+__pycache__
