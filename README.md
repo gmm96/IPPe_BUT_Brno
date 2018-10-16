@@ -91,7 +91,7 @@ You can find some examples of this 3-Address code XML programs in [*tests*](http
 
 ### Technical details 
 
-This project contains two scripts in Python language: tacy.py and interpreter.py, which holds most of the functionality of the interpreter.
+This project contains two scripts in Python language: [tacy.py](https://github.com/gmm96/IPPe_BUT_Brno/blob/master/tacy.py) and [interpreter.py](https://github.com/gmm96/IPPe_BUT_Brno/blob/master/interpreter.py), which holds most of the functionality of the interpreter.
 
 Tacy.py is the **main script** of the project. It just takes the XML file we want to process, creates a interpreter and runs it, there’s nothing else.
 
