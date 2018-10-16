@@ -20,7 +20,7 @@ The filename can be given also with relative or absolute path.
  
 If the interpretation of the given program works without errors, the interpreter returns zero (0) as its *returning code*. If an error occurs, the returning code will be according to Table 1.
 
-![Return codes]( "Return codes")
+![Return codes](https://raw.githubusercontent.com/gmm96/IPPe_BUT_Brno/master/img/returncodes.png "Return codes")
 
 3-AC instructions are represented in XML. The input XML file will be always well-formed and valid according to its *document type definition* (DTD) (see Listing 1). Every valid input XML file will contain its DTD from Listing 1.
 
@@ -54,19 +54,21 @@ source are operands of the operation. The opcodes and arguments are all **case-s
 A *variable identifier* is defined as a non-empty sequence of letters (lowercase/uppercase), digits, and underscore character ("_") starting with a letter or underscore. An *integer literal* is a constant (decimal base) and consists of a sequence of digits that can be prefixed by a sign (e.g. 42, -6 or +9). The type is identified by integer keyword in XML attribute type of the arguments. A *string literal* is just a content of the corresponding XML element (string keyword). It can contain the end of line symbol (use &eol; entity) and few other entities in the XML input file. For the complete list of 3-AC instructions supported by the interpreter, see Table 2. x, y are
 variable names or literals. z is a variable name or label.
 
-![Semantics of 3-Address Code Instructions]( "Semantics of 3-Address Code Instructions")
+![Semantics of 3-Address Code Instructions](https://raw.githubusercontent.com/gmm96/IPPe_BUT_Brno/master/img/semantics.png "Semantics of 3-Address Code Instructions")
 
 Additionally, some more operations are available in the interpreter:
-• READSTR str - Read a string from the standard input into str variable.
-• CONCAT z,x,y - Assign the concatenation of x and y into z (strings).
-• GETAT dst,src,i - Assign the one-character string at index i of string src into dst (string).
-• LEN dst,src - Assign the length of src (string) into dst (integer).
-• STRINT dst,src - Convert a string src into an integer variable dst.
-• INTSTR dst,src -  Convert an integer src into a string variable dst.
-• JUMPIFGR z,x,y - Jump to label z if x > y.
+- READSTR str - Read a string from the standard input into str variable.
+- CONCAT z,x,y - Assign the concatenation of x and y into z (strings).
+- GETAT dst,src,i - Assign the one-character string at index i of string src into dst (string).
+- LEN dst,src - Assign the length of src (string) into dst (integer).
+- STRINT dst,src - Convert a string src into an integer variable dst.
+- INTSTR dst,src -  Convert an integer src into a string variable dst.
+- JUMPIFGR z,x,y - Jump to label z if x > y.
 
 The 3-AC instruction of the following form:
+        
         OPCODE z, x, y;
+
 which is represented in XML as shown in next listing.
 
 ```xml
@@ -95,7 +97,7 @@ Tacy.py is the **main script** of the project. It just takes the XML file we wan
 
 Let’s talk about the interpreter. Thinking about the different possible implementations, I decide to use the **object oriented programming**, specifically creating a *class Interpreter*, which needs a XML file as argument for creating the decoder and running it. With this implementation, we need *an object for every XML file* we want to process, as I think it’s the best approach according to the specification. In addition, we improve the reutilization of the code, facilitating the use of the interpreter in other projects.
 
-![Class diagram]( "Class diagram")
+![Class diagram](https://raw.githubusercontent.com/gmm96/IPPe_BUT_Brno/master/img/class_diagram.jpg "Class diagram")
 
 The class Interpreter will use the **tree of the XML file, a program counter and some data structures** (variables, labels, data stack) as attributes. There’s no need for storing more information in the interpreter according to the description. The creation of an object of this class just loads the XML file, but it doesn’t run it. For that task, it is needed to call the method *run*.
 
