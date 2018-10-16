@@ -16,6 +16,7 @@ The program will:
 
 The interpreter will be a **console application** (i.e. no graphical user interface) that takes one mandatory command-line argument with the filename of the source program with the 3-AC instructions in **XML** format. 
 The filename can be given also with relative or absolute path.
+        
         python3 taci.py input.xml
  
 If the interpretation of the given program works without errors, the interpreter returns zero (0) as its *returning code*. If an error occurs, the returning code will be according to Table 1.
