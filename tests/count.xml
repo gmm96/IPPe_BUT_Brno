@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [
+<!ELEMENT program (taci+)>
+<!ELEMENT taci (dst?,src1?,src2?)>
+<!ELEMENT dst (CDATA)>
+<!ELEMENT src1 (CDATA)>
+<!ELEMENT src2 (CDATA)>
+<!ATTLIST program name CDATA #IMPLIED>
+<!ATTLIST taci opcode CDATA #REQUIRED>
+<!ATTLIST dst kind (literal|variable) "variable">
+<!ATTLIST dst type (integer|string) "integer">
+<!ATTLIST src1 kind (literal|variable) "variable">
+<!ATTLIST src1 type (integer|string) "integer">
+<!ATTLIST src2 kind (literal|variable) "variable">
+<!ATTLIST src2 type (integer|string) "integer">
+<!ENTITY language "Three-Address Code Interpreter">
+]>
+<program name="Project introduction 1: Print numbers from 1 to k (using &language;)">
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">Print numbers from 1 to k</src1>
+  </taci>
+  <taci opcode="MOV">
+    <dst>n</dst>
+    <src1 kind="literal">0</src1>
+  </taci>
+  <taci opcode="READINT">
+    <dst>k</dst>
+  </taci>
+  <taci opcode="LABEL">
+    <dst kind="literal" type="string">START</dst>
+  </taci>
+  <taci opcode="JUMPIFEQ">
+    <dst kind="literal" type="string">END</dst>
+    <src1>n</src1>
+    <src2>k</src2>
+  </taci>
+  <taci opcode="ADD">
+    <dst>n</dst>
+    <src1>n</src1>
+    <src2 kind="literal">1</src2>
+  </taci>
+  <taci opcode="PRINT">
+    <src1>n</src1>
+  </taci>
+  <taci opcode="JUMP">
+    <dst kind="literal" type="string">START</dst>
+  </taci>
+  <taci opcode="LABEL">
+    <dst kind="literal" type="string">END</dst>
+  </taci>
+</program> 

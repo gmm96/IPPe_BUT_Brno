@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [ 
+  <!ELEMENT program (taci+)>
+  <!ELEMENT taci (dst?,src1?,src2?)>
+  <!ELEMENT dst (#PCDATA)>
+  <!ELEMENT src1 (#PCDATA)>
+  <!ELEMENT src2 (#PCDATA)>
+  <!ATTLIST program name CDATA #IMPLIED>
+  <!ATTLIST taci opcode CDATA #REQUIRED>
+  <!ATTLIST dst kind (literal|variable) "variable">
+  <!ATTLIST dst type (integer|string) "integer">
+  <!ATTLIST src1 kind (literal|variable) "variable">
+  <!ATTLIST src1 type (integer|string) "integer">
+  <!ATTLIST src2 kind (literal|variable) "variable">
+  <!ATTLIST src2 type (integer|string) "integer">
+  <!ENTITY language "IPPe Three-Address Code">
+  <!ENTITY eol "&#xA;">
+  <!ENTITY gt ">">
+  <!ENTITY lt "<">
+]>
+<program name="Fibonacci (using &language;)">
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">Print fibonacci of k</src1>
+  </taci>
+  <taci opcode="JUMP">
+    <dst kind="literal" type="string">MAIN</dst>
+  </taci>
+  
+  <taci opcode="LABEL">
+    <dst kind="literal" type="string">FIBONACCI</dst>
+  </taci>
+  <taci opcode="POP">
+    <dst>number</dst>
+  </taci>
+  <taci opcode="MOV">
+    <dst>a</dst>
+    <src1 kind="literal">0</src1>
+  </taci>
+  <taci opcode="MOV">
+    <dst>b</dst>
+    <src1 kind="literal">1</src1>
+  </taci>
+  <taci opcode="MOV">
+    <dst>i</dst>
+    <src1 kind="literal">0</src1>
+  </taci>
+  
+  <taci opcode="LABEL">
+    <dst kind="literal" type="string">LOOP</dst>
+  </taci>
+  <taci opcode="MOV">
+    <dst>aux</dst>
+    <src1>a</src1>
+  </taci>
+  <taci opcode="MOV">
+    <dst>a</dst>
+    <src1>b</src1>
+  </taci>
+  <taci opcode="ADD">
+    <dst>b</dst>
+    <src1>b</src1>
+    <src2>aux</src2>
+  </taci>
+  <taci opcode="ADD">
+    <dst>i</dst>
+    <src1>i</src1>
+    <src2 kind="literal">1</src2>
+  </taci>
+  <taci opcode="JUMPIFGR">
+    <dst kind="literal" type="string">LOOP</dst>
+    <src1>number</src1>
+    <src2>i</src2>
+  </taci>
+
+  <taci opcode="PUSH">
+    <src1>a</src1>
+  </taci>
+  <taci opcode="RETURN">
+  </taci>
+    
+
+  <taci opcode="LABEL">
+    <dst kind="literal" type="string">MAIN</dst>
+  </taci>
+  <taci opcode="READINT">
+    <dst>number</dst>
+  </taci>  
+  <taci opcode="PUSH">
+    <src1>number</src1>
+  </taci>  
+  <taci opcode="CALL">
+    <dst kind="literal" type="string">FIBONACCI</dst>  
+  </taci>
+  <taci opcode="POP">
+    <dst>result</dst>
+  </taci>
+  <taci opcode="PRINT">
+    <src1>result</src1>
+  </taci>  
+
+</program> 

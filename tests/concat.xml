@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [ 
+  <!ELEMENT program (taci+)>
+  <!ELEMENT taci (dst?,src1?,src2?)>
+  <!ELEMENT dst (#PCDATA)>
+  <!ELEMENT src1 (#PCDATA)>
+  <!ELEMENT src2 (#PCDATA)>
+  <!ATTLIST program name CDATA #IMPLIED>
+  <!ATTLIST taci opcode CDATA #REQUIRED>
+  <!ATTLIST dst kind (literal|variable) "variable">
+  <!ATTLIST dst type (integer|string) "integer">
+  <!ATTLIST src1 kind (literal|variable) "variable">
+  <!ATTLIST src1 type (integer|string) "integer">
+  <!ATTLIST src2 kind (literal|variable) "variable">
+  <!ATTLIST src2 type (integer|string) "integer">
+  <!ENTITY language "IPPe Three-Address Code">
+  <!ENTITY eol "&#xA;">
+  <!ENTITY gt ">">
+  <!ENTITY lt "<">
+]>
+<program name="Concat of strings (using &language;)">
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">Concat 2 strings and 1 parsed integer</src1>
+  </taci>
+  <taci opcode="READSTR">
+    <dst kind="variable" type="string">string1</dst>
+  </taci>
+    <taci opcode="READSTR">
+    <dst kind="variable" type="string">string2</dst>
+  </taci>
+  <taci opcode="READINT">
+    <dst kind="variable">number</dst>
+  </taci>
+  <taci opcode="INTSTR">
+    <dst type="string">string3</dst>
+    <src1>number</src1>
+  </taci>
+  <taci opcode="CONCAT">
+    <dst type="string">result</dst>
+    <src1 type="string">string1</src1>
+    <src2 type="string">string2</src2>
+  </taci>
+  <taci opcode="CONCAT">
+    <dst type="string">result</dst>
+    <src1 type="string">result</src1>
+    <src2 type="string">string3</src2>
+  </taci>
+  <taci opcode="PRINT">
+    <src1 type="string">result</src1>
+  </taci>
+</program> 

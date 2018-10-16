@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [ 
+  <!ELEMENT program (taci+)>
+  <!ELEMENT taci (dst?,src1?,src2?)>
+  <!ELEMENT dst (#PCDATA)>
+  <!ELEMENT src1 (#PCDATA)>
+  <!ELEMENT src2 (#PCDATA)>
+  <!ATTLIST program name CDATA #IMPLIED>
+  <!ATTLIST taci opcode CDATA #REQUIRED>
+  <!ATTLIST dst kind (literal|variable) "variable">
+  <!ATTLIST dst type (integer|string) "integer">
+  <!ATTLIST src1 kind (literal|variable) "variable">
+  <!ATTLIST src1 type (integer|string) "integer">
+  <!ATTLIST src2 kind (literal|variable) "variable">
+  <!ATTLIST src2 type (integer|string) "integer">
+  <!ENTITY language "IPPe Three-Address Code">
+  <!ENTITY eol "&#xA;">
+  <!ENTITY gt ">">
+  <!ENTITY lt "<">
+]>
+<program name="Is palindrome? (using &language;)">
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">Is string palindrome?</src1>
+  </taci>
+  <taci opcode="JUMP">
+    <dst kind="literal" type="string">MAIN</dst>
+  </taci>
+  <taci opcode="LABEL">
+    <dst kind="literal" type="string">ISPALINDROME</dst>
+  </taci>
+  <taci opcode="POP">
+    <dst>end</dst>
+  </taci>  
+  <taci opcode="POP">
+    <dst>start</dst>
+  </taci>  
+  <taci opcode="JUMPIFEQ">
+    <dst kind="literal" type="string">TRUE</dst>
+    <src1>start</src1>
+    <src2>end</src2>
+  </taci>
+  <taci opcode="GETAT">
+    <dst type="string">c_start</dst>
+    <src1 type="string">string</src1>
+    <src2>start</src2>
+  </taci>
+  <taci opcode="GETAT">
+    <dst type="string">c_end</dst>
+    <src1 type="string">string</src1>
+    <src2>end</src2>
+  </taci>
+  <taci opcode="JUMPIFEQ">
+    <dst kind="literal" type="string">SUBSTRING</dst>
+    <src1 type="string">c_start</src1>
+    <src2 type="string">c_end</src2>
+  </taci>
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">False</src1>
+  </taci>
+  <taci opcode="JUMP">
+    <dst kind="literal" type="string">END</dst>
+  </taci>
+  <taci opcode="LABEL">
+    <dst kind="literal" type="string">SUBSTRING</dst>
+  </taci>
+  <taci opcode="ADD">
+    <dst>k</dst>
+    <src1>end</src1>
+    <src2 kind="literal">1</src2>
+  </taci>
+  <taci opcode="JUMPIFEQ">
+    <dst kind="literal" type="string">TRUE</dst>
+    <src1>start</src1>
+    <src2>k</src2>
+  </taci>
+  <taci opcode="JUMPIFGR">
+    <dst kind="literal" type="string">TRUE</dst>
+    <src1>start</src1>
+    <src2>k</src2>
+  </taci>
+  <taci opcode="ADD">
+    <dst>start</dst>
+    <src1>start</src1>
+    <src2 kind="literal">1</src2>
+  </taci>
+  <taci opcode="SUB">
+    <dst>end</dst>
+    <src1>end</src1>
+    <src2 kind="literal">1</src2>
+  </taci>
+  <taci opcode="PUSH"><src1>start</src1></taci>
+  <taci opcode="PUSH"><src1>end</src1></taci>
+  <taci opcode="JUMP"><dst kind="literal" type="string">ISPALINDROME</dst></taci>
+  <taci opcode="LABEL">
+    <dst kind="literal" type="string">MAIN</dst>
+  </taci>
+  <taci opcode="READSTR">
+    <dst kind="variable" type="string">string</dst>
+  </taci>
+  <taci opcode="LEN">
+    <dst>end</dst>
+    <src1 type="string">string</src1>
+  </taci>
+  <taci opcode="SUB">
+    <dst>end</dst>
+    <src1>end</src1>
+    <src2 kind="literal">1</src2>
+  </taci>
+  <taci opcode="PUSH">
+    <src1 kind="literal">0</src1>
+  </taci>  
+  <taci opcode="PUSH">
+    <src1>end</src1>
+  </taci>  
+  <taci opcode="JUMP">
+    <dst kind="literal" type="string">ISPALINDROME</dst>  
+  </taci>
+      <taci opcode="LABEL">
+    <dst kind="literal" type="string">TRUE</dst>
+  </taci>
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">True</src1>
+  </taci>
+  <taci opcode="LABEL">
+    <dst kind="literal" type="string">END</dst>
+  </taci>
+</program> 
