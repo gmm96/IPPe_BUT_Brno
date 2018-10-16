@@ -86,7 +86,7 @@ Note that CALL and RETURN instructions use **call stack to store/load program co
 
 ### Examples
 
-You can find some examples of this 3-Address code XML programs in *tests* directory.
+You can find some examples of this 3-Address code XML programs in [*tests*](https://github.com/gmm96/IPPe_BUT_Brno/tree/master/tests) directory.
 
 
 ### Technical details 
